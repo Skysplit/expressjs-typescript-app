@@ -2,20 +2,15 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "esModuleInterop": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "noImplicitAny": true,
-    "sourceMap": true,
-    "removeComments": true,
     "noUnusedLocals": true,
+    "isolatedModules": true,
     "outDir": "dist",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/*"]
+    }
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.(spec|test).(ts|js)"
-  ]
 }

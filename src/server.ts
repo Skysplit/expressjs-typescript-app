@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import errorhandler from 'errorhandler';
 import debug from 'debug';
-import app from './app';
+import app from '@app/app';
 
 if (process.env.NODE_ENV === 'development') {
   app.use(errorhandler());

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { sampleController } from './modules/sample';
-import { homeController } from './modules/home';
+import { sampleController } from '@app/modules/sample';
+import { homeController } from '@app/modules/home';
 const router = Router();
 
 router.use('/', homeController);
