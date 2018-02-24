@@ -4,6 +4,9 @@ module.exports = {
       tsConfigFile: 'tsconfig.json',
     },
   },
+  moduleNameMapper: {
+    "@app/(.*)$": "<rootDir>/src/$1",
+  },
   moduleFileExtensions: ['js', 'ts'],
   transform: {
     '^.+\\.tsx?$': './node_modules/ts-jest/preprocessor.js',
