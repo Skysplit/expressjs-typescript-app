@@ -1,8 +1,5 @@
 language: node_js
 
-services:
-  - mysql
-
 node_js:
   - 10.5
 
@@ -10,30 +7,31 @@ cache:
   directories:
     - node_modules
 
-before_install:
-  - mysql -e 'CREATE DATABASE testing;'
-
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
 stages:
-  - lint
   - test
-  - build
+  - name: build
+    if: branch = master
 
 jobs:
   include:
-    - stage: lint
+    - stage: test
       script: npm run lint
     - stage: test
+      services:
+        - mysql
+      before_install:
+        - mysql -e 'CREATE DATABASE testing;'
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
       script: npm run test
     - stage: build
-      script: npm run build
+      script: npm run build:server
+    - stage: build
+      script: npm run build:client
 
 env:
   globals:
