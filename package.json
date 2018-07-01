@@ -16,7 +16,7 @@
     "build:server": "tsc -p ./tsconfig.build.json",
     "build:client": "next build src/client",
     "lint": "tslint --format stylish --project ./tsconfig.json --config ./tslint.json",
-    "test": "npm run lint && npm run test:ci && npm run test:coverage",
+    "test": "npm run test:ci && npm run test:coverage",
     "test:ci": "npm run test:client:ci && npm run test:server:ci",
     "test:client": "cross-env NODE_ENV=testing jest --config jest.client.js",
     "test:client:ci": "npm run test:client -- --coverage --runInBand --ci",
